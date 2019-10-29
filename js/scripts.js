@@ -2,40 +2,54 @@ $(document).ready(function() {
   $("form#questionaire").submit(function(event) {
     event.preventDefault();
 
-var total = 0;
+    var combined = [];
 
     $("input:checkbox[name=warningSigns]:checked").each(function() {
-      var arrayWarningSigns = parseInt($(this).val());
-      total += parseInt($(this).val());
+       combined.push($(this).val());
     });
-    console.log(total);
+
 
     $("input:checkbox[name=healthSymptoms]:checked").each(function() {
-      var arrayHealthSymptoms = parseInt($(this).val());
-      total += parseInt($(this).val());
+       combined.push($(this).val());
     });
-    console.log(total);
+
 
     $("input:checkbox[name=copingMethods]:checked").each(function() {
-      var arrayCopingMethods = parseInt($(this).val());
-      total -= parseInt($(this).val());
+       combined.push($(this).val());
     });
-    console.log(total);
+    console.log(combined);
+
 
     $("#doingGreat").hide();
     $("#doingOK").hide();
     $("#seekHelp").hide();
 
-
-    if (total < 5) {
+    if (combined.includes("cat") === true) {
       $("#doingGreat").show();
-    } else if (total >= 5 && total <= 8) {
-      $("#doingOK").show();
-    } else if (total > 8) {
-      $("#seekHelp").show();
     } else {
-      console.log("Help, I'm Broken!")
+      $("#seekHelp").show();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // if (total < 5) {
+    //   $("#doingGreat").show();
+    // } else if (total >= 5 && total <= 8) {
+    //   $("#doingOK").show();
+    // } else if (total > 8) {
+    //   $("#seekHelp").show();
+    // } else {
+    //   console.log("Help, I'm Broken!")
+    // }
 
 
 
